@@ -5,6 +5,24 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}" Height="350" Width="525" >
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <ContentControl prism:RegionManager.RegionName="ContentRegion"/>
+        <Image x:Name="imagebox" Grid.ColumnSpan="2"/>
+        <Border BorderBrush="#7d7c7c" BorderThickness="5,5,3,3" Grid.ColumnSpan="2"/>
+        <Border BorderBrush="#fff" BorderThickness="3,3,3,3" Grid.ColumnSpan="2"/>
+        <CheckBox x:Name="checkbox1" Content="Stretch" Grid.Row="1" Checked="CheckBox_Checked" HorizontalAlignment="Center" Width="79" Height="33" VerticalAlignment="Bottom"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" FlowDirection="RightToLeft">
+            <Button x:Name="showButton" Content="Show a picture" Click="showButton_Click"/>
+            <Button x:Name="clearButton" Content="Clear the picture" Click="clearButton_Click"/>
+            <Button x:Name="backgroundButton" Content="Set the background color" Click="backgroundButton_Click"/>
+            <Button x:Name="closeButton" Content="Close" Click="Button_Click"/>
+        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="85*"/>
+        </Grid.ColumnDefinitions>
     </Grid>
 </Window>
