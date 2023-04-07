@@ -9,13 +9,14 @@
         <Image x:Name="imagebox" Grid.ColumnSpan="2"/>
         <Border BorderBrush="#7d7c7c" BorderThickness="5,5,3,3" Grid.ColumnSpan="2"/>
         <Border BorderBrush="#fff" BorderThickness="3,3,3,3" Grid.ColumnSpan="2"/>
-        <CheckBox x:Name="checkbox1" Content="Stretch" Grid.Row="1" Checked="CheckBox_Checked" HorizontalAlignment="Center" Width="79" Height="33" VerticalAlignment="Bottom"/>
+        <CheckBox x:Name="checkbox1" Content="Stretch" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" IsChecked="False" Checked="checkbox1_Checked" Unchecked="checkbox1_Unchecked" Margin="0,0,446,0"/>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" FlowDirection="RightToLeft">
             <Button x:Name="showButton" Content="Show a picture" Click="showButton_Click"/>
             <Button x:Name="clearButton" Content="Clear the picture" Click="clearButton_Click"/>
             <Button x:Name="backgroundButton" Content="Set the background color" Click="backgroundButton_Click"/>
             <Button x:Name="closeButton" Content="Close" Click="Button_Click"/>
         </StackPanel>
+        <Rectangle x:Name="rectangle1" Grid.ColumnSpan="2"/>
         <Grid.RowDefinitions>
             <RowDefinition Height="90*"/>
             <RowDefinition Height="10*"/>

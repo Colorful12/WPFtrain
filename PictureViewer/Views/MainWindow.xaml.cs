@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -12,7 +13,6 @@ namespace PictureViewer.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        double _imgh, _imgw;
         public MainWindow()
         {
             InitializeComponent();
@@ -25,7 +25,7 @@ namespace PictureViewer.Views
 
         private void showButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog img = new OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog img = new Microsoft.Win32.OpenFileDialog();
             img.Title = "Select a picture file";
             img.Filter = "JPEG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|BMP Files (*.bmp)|*.bmp|All files (*.*)|*.*\r\n";
             if (img.ShowDialog() == true)
@@ -41,8 +41,7 @@ namespace PictureViewer.Views
                     bmpImage.EndInit();
                     bmpImage.Freeze();
                 }
-                _imgh = bmpImage.Height;
-                _imgw = bmpImage.Width;
+                rectangle1.Fill = null;
                 imagebox.Source = bmpImage;
                 
             }
@@ -50,25 +49,36 @@ namespace PictureViewer.Views
 
         private void clearButton_Click(object sender, RoutedEventArgs e)
         {
-            imagebox = null;
+            imagebox.Source = null;
         }
+
 
         private void backgroundButton_Click(object sender, RoutedEventArgs e)
         {
+            ColorDialog cd = new ColorDialog();
+            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                imagebox.Source = null;
 
+                // Convert "System.Drawing.Color" to  System.Windows.Media.Color 
+                var mediaColor = System.Windows.Media.Color.FromArgb(cd.Color.A, cd.Color.R, cd.Color.G, cd.Color.B);
+                
+                SolidColorBrush myBrush = new SolidColorBrush(mediaColor);
+                rectangle1.Fill = myBrush;  
+            }
+            
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+    
+
+        private void checkbox1_Checked(object sender, RoutedEventArgs e)
         {
-            imagebox.Stretch = Stretch.Fill;  
+            imagebox.Stretch = Stretch.Fill;
         }
 
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        private void checkbox1_Unchecked(object sender, RoutedEventArgs e)
         {
-            // Stretchをもどせない！次回ここから
-            imagebox.Stretch = Stretch.None;
-            imagebox.Height = _imgh;
-            imagebox.Width = _imgw;
+            imagebox.Stretch = Stretch.Uniform;
         }
     }
 }
