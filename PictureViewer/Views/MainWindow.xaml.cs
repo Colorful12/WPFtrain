@@ -49,6 +49,7 @@ namespace PictureViewer.Views
 
         private void clearButton_Click(object sender, RoutedEventArgs e)
         {
+            rectangle1.Fill = null;
             imagebox.Source = null;
         }
 
